@@ -2,6 +2,7 @@ package btb.bean;
 
 import java.io.IOException;
 
+import btb.trade.Trade;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;

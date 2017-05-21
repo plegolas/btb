@@ -1,5 +1,6 @@
 package btb.trade;
 
+import btb.ExitControl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -21,7 +22,7 @@ public class TradeStrategy
 		if( ! productId.matches( "[a-z]{2}[0-9]{5}" ) )
 		{
 			_logger.fatal( "ProductId is in the wrong format." );
-			System.exit( 1 );
+			ExitControl.exitOnError();
 		}
 		_productId = productId;
 	}
@@ -31,7 +32,7 @@ public class TradeStrategy
 		if( closePriceLow > _closePriceHigh )
 		{
 			_logger.fatal( "Lower close price is higher than Higher close price." );
-			System.exit( 1 );
+			ExitControl.exitOnError();
 		}
 		_closePriceLow = closePriceLow;
 	}

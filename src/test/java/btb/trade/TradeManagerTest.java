@@ -113,6 +113,7 @@ public class TradeManagerTest
 		
 		OrderExecutor mockOrderExecutor = Mockito.mock( OrderExecutor.class );
 		Mockito.when( mockOrderExecutor.openLong( Matchers.anyString() ) ).thenReturn( mockOrderResponse );
+		Mockito.when( mockOrderExecutor.close( Matchers.anyString() ) ).thenReturn( mockOrderResponse );
 		
 		TradeStrategy tradeStrategy = new TradeStrategy( _productId, _openPrice, _closePriceHigh, _closePriceLow );
 		return new LongTrade( tradeStrategy, mockOrderExecutor );

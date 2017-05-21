@@ -3,6 +3,7 @@ package btb.trade;
 import java.io.IOException;
 
 import btb.order.OrderExecutor;
+import btb.trade.rest.bean.RestOrderResponse;
 
 /**
  * Created by Marcelo Giesel on 14-5-17.
@@ -29,10 +30,11 @@ public abstract class Trade
 	
 	protected abstract String openTrade( String productId ) throws IOException;
 	
-	public void close() throws IOException
+	public RestOrderResponse close() throws IOException
 	{
-		_orderExecutor.close( _positionId );
+		RestOrderResponse response =  _orderExecutor.close( _positionId );
 		_status = TradeStatus.CLOSED;
+		return response;
 	}
 	
 	public TradeStrategy getTradeStrategy()

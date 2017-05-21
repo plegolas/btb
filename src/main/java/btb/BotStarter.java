@@ -47,7 +47,7 @@ public class BotStarter implements MessageUpdateListener
 			catch( JsonProcessingException e )
 			{
 				_logger.error( "Error while trying to subscribe to product {}: ", productId, e );
-				System.exit( 1 );
+				ExitControl.exitOnError();
 			}
 		}
 		else

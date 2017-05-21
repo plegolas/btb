@@ -2,8 +2,10 @@ package btb.trade;
 
 import java.io.IOException;
 
-import btb.order.OrderExecutor;
+import btb.ExitControl;
 import btb.rtconnection.MessageUpdateListener;
+import btb.trade.rest.bean.RestOrderResponse;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.logging.log4j.LogManager;
@@ -60,26 +62,35 @@ public class TradeManager implements MessageUpdateListener
 				else if( _trade.getStatus() == Trade.TradeStatus.OPEN && _trade.isClosePrice( price ) )
 				{
 					_logger.info( "Closing trade at {}.", price );
-					_trade.close();
-					System.exit( 0 );
+					printCloseResponse( _trade.close() );
+					ExitControl.exitOnSuccess();
 				}
 			}
 		}
 		catch( IOException e )
 		{
-			_logger.error( "Error on open/close trade:", e );
-			System.exit( 1 );
+			_logger.fatal( "Error on open/close trade:", e );
+			ExitControl.exitOnError();
+		}
+	}
+	
+	private void printCloseResponse( RestOrderResponse response )
+	{
+		ObjectMapper mapper = new ObjectMapper();
+		try
+		{
+			_logger.info( mapper.writeValueAsString( response ) );
+		}
+		catch( JsonProcessingException e )
+		{
+			_logger.error( "Could not parse close response: ", e );
 		}
 	}
 	
 	private boolean isQuoteFromThisTrade( TradeQuote tradeQuote )
 	{
-		if( tradeQuote != null && tradeQuote.getSecurityId() != null
-				&& tradeQuote.getSecurityId().equals( _tradeStrategy.getProductId() ) )
-		{
-			return true;
-		}
-		return false;
+		return tradeQuote != null && tradeQuote.getSecurityId() != null
+				&& tradeQuote.getSecurityId().equals( _tradeStrategy.getProductId() );
 	}
 	
 	public Trade.TradeStatus getTradeStatus()

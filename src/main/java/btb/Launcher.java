@@ -31,15 +31,17 @@ public class Launcher
 		try
 		{
 			connection = new RTConnection();
+			ExitControl.setRTConnection( connection );
 		}
 		catch( Exception e )
 		{
 			_logger.fatal( "Error while starting real time connection.", e );
-			System.exit( 1 );
+			ExitControl.exitOnError();
 		}
 		
 		Trade trade = new LongTrade( tradeStrategy, new OrderExecutor() );
 		TradeManager tradeManager = new TradeManager( trade );
+		ExitControl.setTradeManager( tradeManager );
 		BotStarter botStarter = new BotStarter( connection, tradeManager );
 		try
 		{
@@ -48,7 +50,7 @@ public class Launcher
 		catch( WebSocketException e )
 		{
 			_logger.fatal( "Exception when starting bot: ", e );
-			System.exit( 1 );
+			ExitControl.exitOnError();
 		}
 	}
 
