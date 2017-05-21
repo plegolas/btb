@@ -82,8 +82,9 @@ public class ExitControl
 	
 	private static void exit( int exitCode )
 	{
-		// Commented out to run the tests.
-//		System.exit( exitCode );
+		// Comment it out to run the tests, otherwise they will stop after
+		// the first call to this method.
+		System.exit( exitCode );
 	}
 	
 	public static void setRTConnection( RTConnection rtConnection)

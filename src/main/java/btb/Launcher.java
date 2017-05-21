@@ -14,10 +14,20 @@ public class Launcher
 {
 	public static void main( String[] args )
 	{
-		String productId = args[0];
-		float buyPrice = Float.parseFloat( args[1] );
-		float sellPriceHigh = Float.parseFloat( args[2] );
-		float sellPriceLow = Float.parseFloat( args[3] );
+		String productId;
+		float buyPrice, sellPriceHigh, sellPriceLow;
+		try
+		{
+			productId = args[0];
+			buyPrice = Float.parseFloat( args[1] );
+			sellPriceHigh = Float.parseFloat( args[2] );
+			sellPriceLow = Float.parseFloat( args[3] );
+		}
+		catch( Exception e )
+		{
+			_logger.fatal( "Error while reading the arguments. Please read the instructions and try again." );
+			throw e;
+		}
 		
 		TradeStrategy tradeStrategy = new TradeStrategy( productId, buyPrice, sellPriceHigh, sellPriceLow );
 		
