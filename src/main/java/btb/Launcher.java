@@ -16,10 +16,16 @@ public class Launcher
 	{
 		String productId = args[0];
 		float buyPrice = Float.parseFloat( args[1] );
-		float sellPriceUp = Float.parseFloat( args[2] );
+		float sellPriceHigh = Float.parseFloat( args[2] );
 		float sellPriceLow = Float.parseFloat( args[3] );
 		
-		TradeStrategy tradeStrategy = new TradeStrategy( productId, buyPrice, sellPriceUp, sellPriceLow );
+		TradeStrategy tradeStrategy = new TradeStrategy( productId, buyPrice, sellPriceHigh, sellPriceLow );
+		
+		_logger.info( "Starting bot for:" );
+		_logger.info( "Product ID: {}", productId );
+		_logger.info( "Buy price: {}", buyPrice );
+		_logger.info( "Sell price (High): {}", sellPriceHigh );
+		_logger.info( "Sell price (Low): {}", sellPriceLow );
 		
 		RTConnection connection = null;
 		try

@@ -39,9 +39,9 @@ public class OrderExecutor
 		return execute( _tradeApi.openLong( orderBody ) );
 	}
 	
-	public void close( String positionId ) throws IOException
+	public RestOrderResponse close( String positionId ) throws IOException
 	{
-		execute( _tradeApi.closeLong( positionId ) );
+		return execute( _tradeApi.closeLong( positionId ) );
 	}
 	
 	private <T> T execute( Call<T> call ) throws IOException
@@ -69,7 +69,6 @@ public class OrderExecutor
 			_logger.error( errorMessage );
 			throw new IOException( errorMessage );
 		}
-		
 	}
 	
 	private final TradeApi _tradeApi;

@@ -33,5 +33,5 @@ public interface TradeApi
 			"Accept: application/json"
 	})
 	@DELETE( "core/16/users/me/portfolio/positions/{positionId}" )
-	Call<Void> closeLong( @Query( "positionId" ) String positionId ) throws IOException;
+	Call<RestOrderResponse> closeLong( @Query( "positionId" ) String positionId ) throws IOException;
 }
