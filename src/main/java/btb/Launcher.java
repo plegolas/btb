@@ -1,6 +1,9 @@
 package btb;
 
+import btb.order.OrderExecutor;
 import btb.rtconnection.RTConnection;
+import btb.trade.LongTrade;
+import btb.trade.Trade;
 import btb.trade.TradeManager;
 import btb.trade.TradeStrategy;
 import com.neovisionaries.ws.client.WebSocketException;
@@ -25,11 +28,12 @@ public class Launcher
 		}
 		catch( Exception e )
 		{
-			_logger.error( "Error while starting real time connection.", e );
+			_logger.fatal( "Error while starting real time connection.", e );
 			System.exit( 1 );
 		}
 		
-		TradeManager tradeManager = new TradeManager( tradeStrategy );
+		Trade trade = new LongTrade( tradeStrategy, new OrderExecutor() );
+		TradeManager tradeManager = new TradeManager( trade );
 		BotStarter botStarter = new BotStarter( connection, tradeManager );
 		try
 		{
@@ -37,7 +41,7 @@ public class Launcher
 		}
 		catch( WebSocketException e )
 		{
-			_logger.error( "Exception when starting bot: ", e );
+			_logger.fatal( "Exception when starting bot: ", e );
 			System.exit( 1 );
 		}
 	}

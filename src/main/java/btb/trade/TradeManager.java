@@ -2,6 +2,7 @@ package btb.trade;
 
 import java.io.IOException;
 
+import btb.order.OrderExecutor;
 import btb.rtconnection.MessageUpdateListener;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -13,10 +14,10 @@ import org.apache.logging.log4j.Logger;
  */
 public class TradeManager implements MessageUpdateListener
 {
-	public TradeManager( TradeStrategy tradeStrategy )
+	public TradeManager( Trade trade )
 	{
-		_tradeStrategy = tradeStrategy;
-		_trade = new LongTrade( tradeStrategy );
+		_trade = trade;
+		_tradeStrategy = trade.getTradeStrategy();
 	}
 	
 	@Override
@@ -79,6 +80,16 @@ public class TradeManager implements MessageUpdateListener
 			return true;
 		}
 		return false;
+	}
+	
+	public Trade.TradeStatus getTradeStatus()
+	{
+		return _trade.getStatus();
+	}
+	
+	public Trade getTrade()
+	{
+		return _trade;
 	}
 	
 	public TradeStrategy getTradeStrategy()

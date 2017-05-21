@@ -52,7 +52,7 @@ public class RestOrderResponse implements Serializable
 	@JsonProperty("type")
 	private String type;
 	@JsonProperty("dateCreated")
-	private Integer dateCreated;
+	private Long dateCreated;
 	@JsonIgnore
 	private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 	private final static long serialVersionUID = 1550716975084603194L;
@@ -148,12 +148,12 @@ public class RestOrderResponse implements Serializable
 	}
 	
 	@JsonProperty("dateCreated")
-	public Integer getDateCreated() {
+	public Long getDateCreated() {
 		return dateCreated;
 	}
 	
 	@JsonProperty("dateCreated")
-	public void setDateCreated(Integer dateCreated) {
+	public void setDateCreated(Long dateCreated) {
 		this.dateCreated = dateCreated;
 	}
 	

@@ -2,14 +2,16 @@ package btb.trade;
 
 import java.io.IOException;
 
+import btb.order.OrderExecutor;
+
 /**
  * Created by Marcelo Giesel on 14-5-17.
  */
 public class LongTrade extends Trade
 {
-	public LongTrade( TradeStrategy tradeStrategy )
+	public LongTrade( TradeStrategy tradeStrategy, OrderExecutor orderExecutor )
 	{
-		super( tradeStrategy );
+		super( tradeStrategy, orderExecutor );
 	}
 	
 	protected boolean isOpenPrice( float price )

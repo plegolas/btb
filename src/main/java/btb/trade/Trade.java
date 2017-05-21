@@ -9,11 +9,11 @@ import btb.order.OrderExecutor;
  */
 public abstract class Trade
 {
-	public Trade( TradeStrategy tradeStrategy )
+	public Trade( TradeStrategy tradeStrategy, OrderExecutor orderExecutor )
 	{
 		_tradeStrategy = tradeStrategy;
 		_status = TradeStatus.READY;
-		_orderExecutor = new OrderExecutor();
+		_orderExecutor = orderExecutor;
 		_positionId = "";
 	}
 	
@@ -35,10 +35,19 @@ public abstract class Trade
 		_status = TradeStatus.CLOSED;
 	}
 	
+	public TradeStrategy getTradeStrategy()
+	{
+	return _tradeStrategy;
+	}
 	
 	public TradeStatus getStatus()
 	{
 		return _status;
+	}
+	
+	public String getPositionId()
+	{
+		return _positionId;
 	}
 	
 	public enum TradeStatus

@@ -41,7 +41,7 @@ public class OrderExecutor
 	
 	public void close( String positionId ) throws IOException
 	{
-		_tradeApi.closeLong( positionId ).execute();
+		execute( _tradeApi.closeLong( positionId ) );
 	}
 	
 	private <T> T execute( Call<T> call ) throws IOException

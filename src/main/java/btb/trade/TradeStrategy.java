@@ -13,7 +13,7 @@ public class TradeStrategy
 		setProductId( productId );
 		_openPrice = openPrice;
 		_closePriceHigh = closePriceHigh;
-		_closePriceLow = closePriceLow;
+		setClosePriceLow( closePriceLow );
 	}
 	
 	private void setProductId( String productId )
@@ -24,6 +24,16 @@ public class TradeStrategy
 			System.exit( 1 );
 		}
 		_productId = productId;
+	}
+	
+	private void setClosePriceLow( float closePriceLow )
+	{
+		if( closePriceLow > _closePriceHigh )
+		{
+			_logger.fatal( "Lower close price is higher than Higher close price." );
+			System.exit( 1 );
+		}
+		_closePriceLow = closePriceLow;
 	}
 	
 	public float getOpenPrice()
