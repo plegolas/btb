@@ -2,6 +2,7 @@ group 'btb'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
+apply plugin: 'application'
 
 sourceCompatibility = 1.8
 
@@ -40,4 +41,11 @@ task fatJar( type: Jar ) {
     baseName = project.name + '-all'
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
     with jar
+}
+
+run {
+    if ( project.hasProperty( "botArgs" ) ) {
+        args Eval.me( botArgs )
+    }
+    mainClassName = 'btb.Launcher'
 }

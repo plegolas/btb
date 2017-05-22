@@ -18,3 +18,8 @@ To have the application running you need to provide 4 arguments:
 ```
  java -jar btb.jar sd99999 10 15 5
 ```
+
+Example running with Gradle:
+```
+gradle run -PbotArgs="['sb26502','1.12325','1.1239','1.1231']"
+```
