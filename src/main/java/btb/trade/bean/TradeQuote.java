@@ -1,4 +1,4 @@
-package btb.trade;
+package btb.trade.bean;
 
 /**
  * Created by Marcelo Giesel on 14-5-17.

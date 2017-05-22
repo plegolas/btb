@@ -21,6 +21,7 @@ public class BotStarter implements MessageUpdateListener
 	{
 		_connection = connection;
 		_tradeManager = tradeManager;
+		_mapper = new ObjectMapper();
 	}
 	
 	public void start() throws WebSocketException
@@ -58,10 +59,9 @@ public class BotStarter implements MessageUpdateListener
 	
 	private boolean isConnectedMessage( String message )
 	{
-		ObjectMapper mapper = new ObjectMapper();
 		try
 		{
-			JsonNode jsonMessage = mapper.readTree( message );
+			JsonNode jsonMessage = _mapper.readTree( message );
 			JsonNode messageType = jsonMessage.get( "t" );
 			return messageType != null
 					&& messageType.isTextual()
@@ -76,6 +76,7 @@ public class BotStarter implements MessageUpdateListener
 	
 	private final RTConnection _connection;
 	private final TradeManager _tradeManager;
+	private final ObjectMapper _mapper;
 	private final static Logger _logger = LogManager.getLogger();
 	
 }

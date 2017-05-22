@@ -3,6 +3,8 @@ package btb.trade;
 import java.io.IOException;
 
 import btb.order.OrderExecutor;
+import btb.trade.bean.TradeQuote;
+import btb.trade.bean.TradeStrategy;
 import btb.trade.rest.bean.RestOrderResponse;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;

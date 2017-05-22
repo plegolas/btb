@@ -63,7 +63,7 @@ public class RTConnection
 	public void subscribe( String productId ) throws JsonProcessingException
 	{
 		SubscriptionBody bodyMessage = new SubscriptionBody();
-		List<String> subscribeTo = new LinkedList<String>();
+		List<String> subscribeTo = new LinkedList<>();
 		subscribeTo.add( productId );
 		bodyMessage.setSubscribeTo( subscribeTo );
 		
@@ -75,7 +75,7 @@ public class RTConnection
 	public void unsubscribe( String productId ) throws JsonProcessingException
 	{
 		SubscriptionBody bodyMessage = new SubscriptionBody();
-		List<String> unsubscribeFrom = new LinkedList<String>();
+		List<String> unsubscribeFrom = new LinkedList<>();
 		unsubscribeFrom.add( productId );
 		bodyMessage.setUnsubscribeFrom( unsubscribeFrom );
 		

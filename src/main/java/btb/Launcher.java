@@ -5,7 +5,7 @@ import btb.rtconnection.RTConnection;
 import btb.trade.LongTrade;
 import btb.trade.Trade;
 import btb.trade.TradeManager;
-import btb.trade.TradeStrategy;
+import btb.trade.bean.TradeStrategy;
 import com.neovisionaries.ws.client.WebSocketException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -25,7 +25,8 @@ public class Launcher
 		}
 		catch( Exception e )
 		{
-			_logger.fatal( "Error while reading the arguments. Please read the instructions and try again." );
+			_logger.fatal( "Error while reading the arguments. Please make sure the arguments" +
+					"are in the format <productId> <buyPrice> <closePriceHigh> <closePriceLow>." );
 			throw e;
 		}
 		

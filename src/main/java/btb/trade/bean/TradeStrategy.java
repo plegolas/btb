@@ -1,4 +1,4 @@
-package btb.trade;
+package btb.trade.bean;
 
 import btb.ExitControl;
 import org.apache.logging.log4j.LogManager;

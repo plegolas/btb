@@ -7,7 +7,7 @@ import retrofit2.converter.jackson.JacksonConverterFactory;
 /**
  * Created by Marcelo Giesel on 15-5-17.
  */
-public class TradeApiRestClient //implements TradeApi
+public class TradeApiRestClient
 {
 	public TradeApiRestClient()
 	{

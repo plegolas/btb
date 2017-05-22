@@ -1,7 +1,5 @@
 package btb.rtconnection;
 
-import java.io.IOException;
-
 /**
  * Created by Marcelo Giesel on 18-5-17.
  */

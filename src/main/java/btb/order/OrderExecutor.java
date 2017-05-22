@@ -2,11 +2,11 @@ package btb.order;
 
 import java.io.IOException;
 
-import btb.trade.rest.bean.OrderBody;
 import btb.bean.Value;
-import btb.trade.rest.bean.RestOrderResponse;
 import btb.trade.rest.TradeApi;
 import btb.trade.rest.TradeApiRestClient;
+import btb.trade.rest.bean.OrderBody;
+import btb.trade.rest.bean.RestOrderResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

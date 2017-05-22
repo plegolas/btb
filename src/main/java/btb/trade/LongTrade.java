@@ -3,6 +3,7 @@ package btb.trade;
 import java.io.IOException;
 
 import btb.order.OrderExecutor;
+import btb.trade.bean.TradeStrategy;
 
 /**
  * Created by Marcelo Giesel on 14-5-17.

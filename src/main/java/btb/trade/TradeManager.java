@@ -4,6 +4,8 @@ import java.io.IOException;
 
 import btb.ExitControl;
 import btb.rtconnection.MessageUpdateListener;
+import btb.trade.bean.TradeQuote;
+import btb.trade.bean.TradeStrategy;
 import btb.trade.rest.bean.RestOrderResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -20,22 +22,22 @@ public class TradeManager implements MessageUpdateListener
 	{
 		_trade = trade;
 		_tradeStrategy = trade.getTradeStrategy();
+		_mapper = new ObjectMapper();
 	}
 	
 	@Override
 	public void onMessageUpdate( String message )
 	{
-		ObjectMapper mapper = new ObjectMapper();
 		try
 		{
-			JsonNode jsonMessage = mapper.readTree( message );
+			JsonNode jsonMessage = _mapper.readTree( message );
 			JsonNode messageType = jsonMessage.get( "t" );
 			if( messageType != null
 					&& messageType.isTextual()
 					&& messageType.textValue().equalsIgnoreCase( "trading.quote" ) )
 			{
 				String messageBody = jsonMessage.get( "body" ).toString();
-				priceUpdate( mapper.readValue( messageBody, TradeQuote.class ) );
+				priceUpdate( _mapper.readValue( messageBody, TradeQuote.class ) );
 			}
 			else {
 				_logger.debug( "Received not quote message: {}", jsonMessage );
@@ -79,10 +81,9 @@ public class TradeManager implements MessageUpdateListener
 	
 	private void printCloseResponse( RestOrderResponse response )
 	{
-		ObjectMapper mapper = new ObjectMapper();
 		try
 		{
-			_logger.info( "Close response:{}", mapper.writeValueAsString( response ) );
+			_logger.info( "Close response:{}", _mapper.writeValueAsString( response ) );
 		}
 		catch( JsonProcessingException e )
 		{
@@ -113,5 +114,6 @@ public class TradeManager implements MessageUpdateListener
 	
 	private final Trade _trade;
 	private final TradeStrategy _tradeStrategy;
+	private final ObjectMapper _mapper;
 	private static final Logger _logger = LogManager.getLogger();
 }

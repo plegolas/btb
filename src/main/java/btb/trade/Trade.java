@@ -3,6 +3,7 @@ package btb.trade;
 import java.io.IOException;
 
 import btb.order.OrderExecutor;
+import btb.trade.bean.TradeStrategy;
 import btb.trade.rest.bean.RestOrderResponse;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
