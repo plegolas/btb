@@ -4,6 +4,8 @@ import java.io.IOException;
 
 import btb.order.OrderExecutor;
 import btb.trade.rest.bean.RestOrderResponse;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * Created by Marcelo Giesel on 14-5-17.
@@ -26,6 +28,7 @@ public abstract class Trade
 	{
 		_positionId = openTrade();
 		_status = TradeStatus.OPEN;
+		_logger.info( "Trade open with position id {}.", _positionId );
 	}
 	
 	protected abstract String openTrade() throws IOException;
@@ -61,5 +64,6 @@ public abstract class Trade
 	protected TradeStatus _status;
 	protected final TradeStrategy _tradeStrategy;
 	protected final OrderExecutor _orderExecutor;
+	private static final Logger _logger = LogManager.getLogger();
 }
  

@@ -82,7 +82,7 @@ public class TradeManager implements MessageUpdateListener
 		ObjectMapper mapper = new ObjectMapper();
 		try
 		{
-			_logger.info( mapper.writeValueAsString( response ) );
+			_logger.info( "Close response:{}", mapper.writeValueAsString( response ) );
 		}
 		catch( JsonProcessingException e )
 		{
