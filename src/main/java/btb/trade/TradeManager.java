@@ -37,6 +37,9 @@ public class TradeManager implements MessageUpdateListener
 				String messageBody = jsonMessage.get( "body" ).toString();
 				priceUpdate( mapper.readValue( messageBody, TradeQuote.class ) );
 			}
+			else {
+				_logger.debug( "Received not quote message: {}", jsonMessage );
+			}
 		}
 		catch( IOException e )
 		{
