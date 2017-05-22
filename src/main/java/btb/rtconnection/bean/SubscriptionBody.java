@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 /**
  * Created by Marcelo Giesel on 17-5-17.
@@ -25,8 +26,10 @@ public class SubscriptionBody implements Serializable
 {
 	
 	@JsonProperty("subscribeTo")
+	@JsonSerialize( converter = TradingProductIdConverter.class )
 	private List<String> subscribeTo = null;
 	@JsonProperty("unsubscribeFrom")
+	@JsonSerialize( converter = TradingProductIdConverter.class )
 	private List<String> unsubscribeFrom = null;
 	@JsonIgnore
 	private Map<String, Object> additionalProperties = new HashMap<String, Object>();
@@ -61,5 +64,5 @@ public class SubscriptionBody implements Serializable
 	public void setAdditionalProperty(String name, Object value) {
 		this.additionalProperties.put(name, value);
 	}
-	
 }
+
