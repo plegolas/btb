@@ -24,11 +24,11 @@ public abstract class Trade
 	
 	public void open() throws IOException
 	{
-		_positionId = openTrade( _tradeStrategy.getProductId() );
+		_positionId = openTrade();
 		_status = TradeStatus.OPEN;
 	}
 	
-	protected abstract String openTrade( String productId ) throws IOException;
+	protected abstract String openTrade() throws IOException;
 	
 	public RestOrderResponse close() throws IOException
 	{

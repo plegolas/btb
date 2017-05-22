@@ -32,8 +32,9 @@ public class LongTrade extends Trade
 		return false;
 	}
 	
-	protected String openTrade( String productId ) throws IOException
+	protected String openTrade() throws IOException
 	{
+		String productId = _tradeStrategy.getProductId();
 		return _orderExecutor.openLong( productId ).getPositionId();
 	}
 }

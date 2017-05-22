@@ -1,13 +1,13 @@
 package btb.order;
 
 import java.io.IOException;
-import java.text.DecimalFormat;
 
 import btb.trade.rest.bean.OrderBody;
 import btb.bean.Value;
 import btb.trade.rest.bean.RestOrderResponse;
 import btb.trade.rest.TradeApi;
 import btb.trade.rest.TradeApiRestClient;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import retrofit2.Call;
@@ -21,6 +21,7 @@ public class OrderExecutor
 	public OrderExecutor()
 	{
 		_tradeApi = new TradeApiRestClient().getClient();
+		_mapper = new ObjectMapper();
 	}
 	
 	public RestOrderResponse openLong( String productId ) throws IOException
@@ -34,7 +35,12 @@ public class OrderExecutor
 		orderBody.setProductId( productId );
 		orderBody.setLeverage( 2 );
 		orderBody.setDirection( "BUY" );
-		orderBody.setValue( value );
+		orderBody.setInvestingAmount( value );
+		
+		if( _logger.isDebugEnabled() )
+		{
+			_logger.debug( "Sending request with body:\n{}", _mapper.writeValueAsString( orderBody ) );
+		}
 		
 		return execute( _tradeApi.openLong( orderBody ) );
 	}
@@ -71,6 +77,7 @@ public class OrderExecutor
 		}
 	}
 	
+	private final ObjectMapper _mapper;
 	private final TradeApi _tradeApi;
 	private static final Logger _logger = LogManager.getLogger();
 }

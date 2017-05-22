@@ -9,7 +9,7 @@ import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
-import retrofit2.http.Query;
+import retrofit2.http.Path;
 
 /**
  * Created by Marcelo Giesel on 14-5-17.
@@ -33,5 +33,5 @@ public interface TradeApi
 			"Accept: application/json"
 	})
 	@DELETE( "core/16/users/me/portfolio/positions/{positionId}" )
-	Call<RestOrderResponse> closeLong( @Query( "positionId" ) String positionId ) throws IOException;
+	Call<RestOrderResponse> closeLong( @Path( "positionId" ) String positionId ) throws IOException;
 }

@@ -18,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
 		"productId",
-		"value",
+		"investingAmount",
 		"leverage",
 		"direction"
 })
@@ -27,8 +27,8 @@ public class OrderBody implements Serializable
 	
 	@JsonProperty("productId")
 	private String productId;
-	@JsonProperty("value")
-	private Value value;
+	@JsonProperty("investingAmount")
+	private Value investingAmount;
 	@JsonProperty("leverage")
 	private Integer leverage;
 	@JsonProperty("direction")
@@ -47,14 +47,14 @@ public class OrderBody implements Serializable
 		this.productId = productId;
 	}
 	
-	@JsonProperty("value")
-	public Value getValue() {
-		return value;
+	@JsonProperty("investingAmount")
+	public Value getInvestingAmount() {
+		return investingAmount;
 	}
 	
-	@JsonProperty("value")
-	public void setValue(Value value ) {
-		this.value = value;
+	@JsonProperty("investingAmount")
+	public void setInvestingAmount(Value investingAmount ) {
+		this.investingAmount = investingAmount;
 	}
 	
 	@JsonProperty("leverage")
